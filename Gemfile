@@ -31,6 +31,7 @@ end
 group :test do 
   gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'rspec-its'
   gem 'spring-commands-rspec'
   gem 'guard-rspec'
   gem 'capybara'
