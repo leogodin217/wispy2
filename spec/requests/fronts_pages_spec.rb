@@ -21,7 +21,7 @@ describe "Front pages" do
 
   describe "listing fronts" do
     before do
-      3.times do 
+      3.times do
         FactoryGirl.create(:front)
       end
 
@@ -33,43 +33,69 @@ describe "Front pages" do
 
     it "should show all fronts" do
       fronts.each do |current_front|
-        expect(page).to have_selector "tr", text: current_front.full_name  
+        expect(page).to have_selector "tr", text: current_front.full_name
       end
     end
 
     it "should have show links" do
       fronts.each do |current_front|
         expect(page).to have_link "Show", front_path(current_front)
-      end       
+      end
     end
 
 
   end
 
   describe "creating a front" do
-    let(:front_attributes) { {market:   "Market 1",
-                             segment:   "Segment 1",
-                             site:      "Site 1",
-                             app_layer: "App layer 1",
-                             status:    "Status 1",
-                             notes:     "Notes 1" } }
+    let(:front) {FactoryGirl.build(:front) }
 
-    describe "Filling in the form" do
-      before do
-        visit fronts_path
-        click_link "New Front"
-      end  
+    before do
+      visit fronts_path
+      click_link "New Front"
+    end
+
+    describe "with invalid information" do
+
+      before { click_button "Create" }
+
+      it "should re-display the form" do
+        expect(page).to have_selector "form#new_front"
+      end
+
+      it "should show error count" do
+        @front = Front.new
+        @front.save
+        @error_count = @front.errors.count
+        expect(page).to have_content("The form contains #{@error_count} errors")
+      end
+
+      it "should require required fields" do
+        @front = Front.new
+        @front.save
+        @error_messages = @front.errors.full_messages
+
+        @error_messages.each do |message|
+          expect(page).to have_content(message)
+        end
+      end
+
+    end
+
+
+    describe "with valid information" do
 
       it "should create the Front" do
-        fill_in("Market", with: front_attributes[:market])
-        fill_in "Segment", with: front_attributes[:segment]
-        fill_in "Site", with: front_attributes[:site]
-        fill_in "Application layer", with: front_attributes[:app_layer]
-        fill_in "Status", with: front_attributes[:status]
-        fill_in "Notes", with: front_attributes[:notes]
-        expect(click_link("Create")).to change(Front.count.by(1))
+        fill_in "Market",    with: front.market
+        fill_in "Segment",   with: front.segment
+        fill_in "Site",      with: front.site
+        fill_in "App layer", with: front.app_layer
+        fill_in "Pipe",      with: front.pipe
+        fill_in "Status",    with: front.status
+        fill_in "Notes",     with: front.notes
+        expect{click_button("Create")}.to change{Front.count}.by(1)
       end
     end
+
   end
 
   describe "deleting a front" do
