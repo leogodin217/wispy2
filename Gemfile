@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
+gem 'bootstrap-sass', '~> 3.1.1'
+gem 'sprockets'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -23,11 +25,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'haml-rails', '>= 0.3.4'
 
-group :development, :production do 
+group :development, :production do
   gem 'pg'
 end
 
-group :test do 
+group :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'rspec-its'
@@ -38,7 +40,7 @@ group :test do
 
 end
 
-group :production do 
+group :production do
   gem 'rails_12factor'
 end
 
@@ -54,5 +56,5 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# For heroku 
+# For heroku
 ruby '2.1.2'
