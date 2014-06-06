@@ -9,27 +9,9 @@
   = csrf_meta_tags
 
   %body
-    .navbar.navbar-inverse{role: "navigation"}
-      .container
-        .navbar-header
-          %button.navbar-toggle{type: "button",
-                                "data-toggle" => "collapse",
-                                "data-target" => ".navbar-collapse"}
-            %span.sr-only Manage
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand{href: "#{root_path}"}
-            Wispy Cloud Capacity
+    =render "shared/navbar"
 
-        .collapse.navbar-collapse
-          %ul.nav.navbar-nav
-            %li.active
-              =link_to "Home", root_path
-            %li
-              =link_to "Fronts", fronts_path
     .container
-
       %h1 Wispy Cloud Capacity
 
       = yield
