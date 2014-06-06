@@ -16,8 +16,8 @@ require 'rspec/its'
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-RSpec.configure do |config|
 
+RSpec.configure do |config|
   # To use Capybara
   config.include Capybara::DSL
 # The settings below are suggested to provide a good initial experience
