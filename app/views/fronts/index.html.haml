@@ -1,5 +1,8 @@
 
-%ul.fronts_list
-  - @fronts.each do |front|
-    %tr=front.full_name
-    %tr=link_to "Show", front_path(front)
+%fieldset
+  %ul.fronts_list
+    - @fronts.each do |front|
+      %tr=front.full_name
+      %tr=link_to "Show", front_path(front)
+
+=link_to "New Front", new_front_path

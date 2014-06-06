@@ -29,6 +29,8 @@ describe "Front pages" do
     end
     let(:fronts) { Front.all }
 
+    it { should have_link "New Front", new_front_path }
+
     it "should show all fronts" do
       fronts.each do |current_front|
         expect(page).to have_selector "tr", text: current_front.full_name  
@@ -45,7 +47,29 @@ describe "Front pages" do
   end
 
   describe "creating a front" do
-    pending
+    let(:front_attributes) { {market:   "Market 1",
+                             segment:   "Segment 1",
+                             site:      "Site 1",
+                             app_layer: "App layer 1",
+                             status:    "Status 1",
+                             notes:     "Notes 1" } }
+
+    describe "Filling in the form" do
+      before do
+        visit fronts_path
+        click_link "New Front"
+      end  
+
+      it "should create the Front" do
+        fill_in("Market", with: front_attributes[:market])
+        fill_in "Segment", with: front_attributes[:segment]
+        fill_in "Site", with: front_attributes[:site]
+        fill_in "Application layer", with: front_attributes[:app_layer]
+        fill_in "Status", with: front_attributes[:status]
+        fill_in "Notes", with: front_attributes[:notes]
+        expect(click_link("Create")).to change(Front.count.by(1))
+      end
+    end
   end
 
   describe "deleting a front" do

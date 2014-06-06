@@ -7,4 +7,8 @@ class FrontsController < ApplicationController
   def show
     @front = Front.find(params[:id])
   end
+
+  def new
+    @front = Front.new    
+  end
 end

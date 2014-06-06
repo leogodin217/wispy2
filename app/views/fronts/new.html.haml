@@ -1,0 +1,20 @@
+
+%fieldset
+  %legend New Front
+
+  = form_for @front  do |f|
+    %p
+      =f.label :market
+      =f.text_field :market
+    %p
+      =f.label :segment
+      =f.text_field :segment
+    %p
+      =f.label :site
+      =f.text_field :site
+    %p
+      =f.label :app_layer, caption: "Application layer"
+      =f.text_field :app_layer
+
+    %p
+      =f.submit "Create"
