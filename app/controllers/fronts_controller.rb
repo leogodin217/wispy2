@@ -23,7 +23,7 @@ class FrontsController < ApplicationController
     end
   end
 
-  def edit  
+  def edit
     @front = Front.find(params[:id])
   end
 
@@ -31,6 +31,7 @@ class FrontsController < ApplicationController
     @front = Front.find(params[:id])
 
     if @front.update_attributes front_parameters
+      flash[:success] = "Front successfully changed."
       redirect_to @front
     else
       render :edit

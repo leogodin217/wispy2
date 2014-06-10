@@ -95,13 +95,13 @@ describe "Front pages" do
       end
 
       it "should create the Front" do
-    
+
         expect{click_button("Create")}.to change{Front.count}.by(1)
       end
 
       it "should flash a success message" do
         click_button("Create")
-        expect(page).to have_content "Front successfully created"  
+        expect(page).to have_content "Front successfully created"
       end
     end
 
@@ -134,8 +134,8 @@ describe "Front pages" do
         expect(@error_messages.count).to be > 0
 
         fill_in "Market",    with: ""
-        fill_in "Segment",   with: "" 
-        fill_in "Site",      with: "" 
+        fill_in "Segment",   with: ""
+        fill_in "Site",      with: ""
         fill_in "App layer", with: ""
         fill_in "Pipe",      with: ""
         fill_in "Status",    with: ""
@@ -168,6 +168,11 @@ describe "Front pages" do
           expect(valid_front.pipe).to eq changed_front.pipe
           expect(valid_front.status).to eq changed_front.status
           expect(valid_front.notes).to eq changed_front.notes
+        end
+
+        it "should flass a success message" do
+          click_button("Save")
+          expect(page).to have_content("Front successfully changed")
         end
       end
 
