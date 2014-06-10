@@ -184,10 +184,5 @@ describe "Front pages" do
           expect(page).to have_content("Front successfully changed")
         end
       end
-
-
-
-
-
   end
 end

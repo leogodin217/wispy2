@@ -1,7 +1,19 @@
 Rails.application.routes.draw do
 
+  resources :statuses
+  resources :markets
+  resources :segments
+  resources :sites
+  resources :app_layers
+  resources :pipes
+  resources :statuses
+
   root 'home_pages#home'
   resources :fronts
+
+  match '/admin', to: "admins#index", via: :get
+  # Temporary signin_path before authentication is setup
+  match '/signin', to: "users#signin", via: :get
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
