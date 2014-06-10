@@ -1,0 +1,10 @@
+= form_for @market do |f|
+  = render "shared/form_error_messages", object: @market
+  %p
+    =f.label :market
+    =f.text_field :market
+  %p
+    =f.label :active
+    =f.check_box :active
+  %p
+    =f.submit "Submit"

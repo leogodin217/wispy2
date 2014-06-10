@@ -1,2 +1,8 @@
-%h1 Markets#index
-%p Find me in app/views/markets/index.html.haml
+%fieldset
+  %table.menu-table
+    - @markets.each do |market|
+      %tr
+        %td=market.market
+        %td=link_to "Show", market_path(market)
+
+=link_to "New Market", new_market_path

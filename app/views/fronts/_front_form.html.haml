@@ -1,0 +1,25 @@
+= form_for @front  do |f|
+  = render 'shared/form_error_messages', object: f.object
+  %p
+    =f.label :market
+    =f.text_field :market
+  %p
+    =f.label :segment
+    =f.text_field :segment
+  %p
+    =f.label :site
+    =f.text_field :site
+  %p
+    =f.label :app_layer
+    =f.text_field :app_layer
+  %p
+    =f.label :pipe
+    =f.text_field :pipe
+  %p
+    =f.label :status
+    =f.text_field :status
+  %p
+    =f.label :notes
+    =f.text_area :notes
+  %p
+    =f.submit "Submit"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610163610) do
+ActiveRecord::Schema.define(version: 20140610172712) do
 
   create_table "fronts", force: true do |t|
     t.string   "market"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20140610163610) do
     t.string   "pipe"
     t.string   "status"
     t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "markets", force: true do |t|
+    t.string   "market"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

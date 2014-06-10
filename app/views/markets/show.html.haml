@@ -1,2 +1,14 @@
-%h1 Markets#show
-%p Find me in app/views/markets/show.html.haml
+%fieldset
+  %legend showing "#{@market.market}"
+  %ul
+    %li
+      =@market.market
+    %li
+      - if @market.active
+        Active
+      - else
+        Not active
+=link_to "Edit", edit_market_path(@market.id)
+=link_to "Delete", @market, method: :delete,
+                            data: { confirm: "You sure?" },
+                            title: @market.market

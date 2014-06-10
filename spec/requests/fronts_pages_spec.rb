@@ -56,7 +56,7 @@ describe "Front pages" do
 
     describe "with invalid information" do
 
-      before { click_button "Create" }
+      before { click_button "Submit" }
 
       it "should re-display the form" do
         expect(page).to have_selector "form#new_front"
@@ -96,11 +96,11 @@ describe "Front pages" do
 
       it "should create the Front" do
 
-        expect{click_button("Create")}.to change{Front.count}.by(1)
+        expect{click_button("Submit")}.to change{Front.count}.by(1)
       end
 
       it "should flash a success message" do
-        click_button("Create")
+        click_button("Submit")
         expect(page).to have_content "Front successfully created"
       end
     end
@@ -149,7 +149,7 @@ describe "Front pages" do
         fill_in "Pipe",      with: ""
         fill_in "Status",    with: ""
         fill_in "Notes",     with: ""
-        click_button("Save")
+        click_button("Submit")
 
         @error_messages.each do |message|
           expect(page).to have_content(message)
@@ -168,7 +168,7 @@ describe "Front pages" do
         end
 
         it "should save the new information" do
-          click_button("Save")
+          click_button("Submit")
           valid_front.reload
           expect(valid_front.market).to eq changed_front.market
           expect(valid_front.segment).to eq changed_front.segment
@@ -180,7 +180,7 @@ describe "Front pages" do
         end
 
         it "should flass a success message" do
-          click_button("Save")
+          click_button("Submit")
           expect(page).to have_content("Front successfully changed")
         end
       end

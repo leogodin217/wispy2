@@ -8,5 +8,10 @@ FactoryGirl.define do
     sequence(:status)      { |n| "Status #{n}" }
     sequence(:notes)       { |n| "Notes #{n}" }
   end
+
+  factory :market do
+    sequence(:market) { |n| "Market #{n}" }
+    active true
+  end
 end
 
