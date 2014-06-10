@@ -1,8 +1,9 @@
 
 %fieldset
-  %ul.fronts_list
+  %table.fronts_table
     - @fronts.each do |front|
-      %tr=front.full_name
-      %tr=link_to "Show", front_path(front)
+      %tr
+        %td=front.full_name
+        %td=link_to "Show", front_path(front)
 
 =link_to "New Front", new_front_path

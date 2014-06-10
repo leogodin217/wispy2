@@ -10,6 +10,9 @@
 
   %body
     =render "shared/navbar"
+    - if flash[:success]
+      .alert.alert-success
+        = flash[:success]
 
     .container
       %h1 Wispy Cloud Capacity

@@ -84,7 +84,7 @@ describe "Front pages" do
 
     describe "with valid information" do
 
-      it "should create the Front" do
+      before do
         fill_in "Market",    with: front.market
         fill_in "Segment",   with: front.segment
         fill_in "Site",      with: front.site
@@ -92,7 +92,16 @@ describe "Front pages" do
         fill_in "Pipe",      with: front.pipe
         fill_in "Status",    with: front.status
         fill_in "Notes",     with: front.notes
+      end
+
+      it "should create the Front" do
+    
         expect{click_button("Create")}.to change{Front.count}.by(1)
+      end
+
+      it "should flash a success message" do
+        click_button("Create")
+        expect(page).to have_content "Front successfully created"  
       end
     end
 

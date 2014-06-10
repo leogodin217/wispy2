@@ -16,6 +16,7 @@ class FrontsController < ApplicationController
     @front = Front.new front_parameters
 
     if @front.save
+      flash[:success] = "Front successfully created."
       redirect_to @front
     else
       render :new
