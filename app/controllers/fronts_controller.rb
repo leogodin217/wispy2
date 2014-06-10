@@ -38,6 +38,13 @@ class FrontsController < ApplicationController
     end
   end
 
+  def destroy
+    @front = Front.find(params[:id])
+    flash[:success] = "Front successfuly destroyed."
+    @front.destroy
+    redirect_to fronts_path
+  end
+
   private
 
     def front_parameters

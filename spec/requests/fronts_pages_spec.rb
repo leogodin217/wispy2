@@ -111,12 +111,21 @@ describe "Front pages" do
     let!(:front) { FactoryGirl.create(:front) }
 
     before do
-      # visit edit_front_path(front.id)
-      pending
+      visit front_path(front.id)
     end
 
     it "should delete the front" do
-      expect(click_link("Delete")).to change{Front.count}.by(-1)
+      expect{click_link("Delete")}.to change{Front.count}.by(-1)
+    end
+
+    it "should flash a success message" do
+      click_link "Delete"
+      expect(page).to have_content "Front successfuly destroyed."
+    end
+
+    it "should redirect to the fronts index" do
+      click_link "Delete"
+      expect(page.current_url).to eq fronts_url
     end
 
   end
