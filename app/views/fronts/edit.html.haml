@@ -1,0 +1,35 @@
+
+%fieldset
+  %legend Change Front
+
+  = form_for @front  do |f|
+    - if @front.errors.any?
+      .error_explanation
+        .alert.alert-error
+          The form contains #{pluralize(@front.errors.count, 'error')}
+          %ul
+          - @front.errors.full_messages.each do |message|
+            %li #{message}
+    %p
+      =f.label :market
+      =f.text_field :market
+    %p
+      =f.label :segment
+      =f.text_field :segment
+    %p
+      =f.label :site
+      =f.text_field :site
+    %p
+      =f.label :app_layer
+      =f.text_field :app_layer
+    %p
+      =f.label :pipe
+      =f.text_field :pipe
+    %p
+      =f.label :status
+      =f.text_field :status
+    %p
+      =f.label :notes
+      =f.text_area :notes
+    %p
+      =f.submit "Save"

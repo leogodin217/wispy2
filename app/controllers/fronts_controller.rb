@@ -23,6 +23,20 @@ class FrontsController < ApplicationController
     end
   end
 
+  def edit  
+    @front = Front.find(params[:id])
+  end
+
+  def update
+    @front = Front.find(params[:id])
+
+    if @front.update_attributes front_parameters
+      redirect_to @front
+    else
+      render :edit
+    end
+  end
+
   private
 
     def front_parameters

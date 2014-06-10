@@ -108,10 +108,72 @@ describe "Front pages" do
   end
 
   describe "deleting a front" do
-    pending
+    let!(:front) { FactoryGirl.create(:front) }
+
+    before do
+      # visit edit_front_path(front.id)
+      pending
+    end
+
+    it "should delete the front" do
+      expect(click_link("Delete")).to change{Front.count}.by(-1)
+    end
+
   end
 
   describe "editing a front" do
-    pending
+    let!(:valid_front)   { FactoryGirl.create(:front) }
+    let!(:changed_front) { FactoryGirl.build(:front) }
+
+    before { visit edit_front_path valid_front.id }
+
+      it "should require required fields" do
+        @front = Front.new
+        @front.save
+        @error_messages = @front.errors.full_messages
+        expect(@error_messages.count).to be > 0
+
+        fill_in "Market",    with: ""
+        fill_in "Segment",   with: "" 
+        fill_in "Site",      with: "" 
+        fill_in "App layer", with: ""
+        fill_in "Pipe",      with: ""
+        fill_in "Status",    with: ""
+        fill_in "Notes",     with: ""
+        click_button("Save")
+
+        @error_messages.each do |message|
+          expect(page).to have_content(message)
+        end
+      end
+
+      describe "with valid information" do
+        before do
+          fill_in "Market",    with: changed_front.market
+          fill_in "Segment",   with: changed_front.segment
+          fill_in "Site",      with: changed_front.site
+          fill_in "App layer", with: changed_front.app_layer
+          fill_in "Pipe",      with: changed_front.pipe
+          fill_in "Status",    with: changed_front.status
+          fill_in "Notes",     with: changed_front.notes
+        end
+
+        it "should save the new information" do
+          click_button("Save")
+          valid_front.reload
+          expect(valid_front.market).to eq changed_front.market
+          expect(valid_front.segment).to eq changed_front.segment
+          expect(valid_front.site).to eq changed_front.site
+          expect(valid_front.app_layer).to eq changed_front.app_layer
+          expect(valid_front.pipe).to eq changed_front.pipe
+          expect(valid_front.status).to eq changed_front.status
+          expect(valid_front.notes).to eq changed_front.notes
+        end
+      end
+
+
+
+
+
   end
 end
