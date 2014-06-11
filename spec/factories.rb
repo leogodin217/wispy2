@@ -18,5 +18,11 @@ FactoryGirl.define do
     sequence(:segment) { |n| "Market #{n}" }
     active true
   end
+
+  factory :site do
+    sequence(:site) { |n| "Market #{n}" }
+    active true
+  end
+
 end
 

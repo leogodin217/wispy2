@@ -1,0 +1,14 @@
+%fieldset
+  %legend showing "#{@site.site}"
+  %ul
+    %li
+      =@site.site
+    %li
+      - if @site.active
+        Active
+      - else
+        Not active
+=link_to "Edit", edit_site_path(@site.id)
+=link_to "Delete", @site, method: :delete,
+                            data: { confirm: "You sure?" },
+                            title: @site.site

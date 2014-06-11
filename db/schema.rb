@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611184519) do
+ActiveRecord::Schema.define(version: 20140611191740) do
 
   create_table "fronts", force: true do |t|
     t.string   "market"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20140611184519) do
 
   create_table "segments", force: true do |t|
     t.string   "segment"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sites", force: true do |t|
+    t.string   "site"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"

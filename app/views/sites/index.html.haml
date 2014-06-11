@@ -1,0 +1,8 @@
+%fieldset
+  %table.menu-table
+    - @sites.each do |site|
+      %tr
+        %td=site.site
+        %td=link_to "Show", site_path(site)
+
+=link_to "New Site", new_site_path
