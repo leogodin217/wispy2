@@ -1,0 +1,8 @@
+%fieldset
+  %table.menu-table
+    - @app_layers.each do |app_layer|
+      %tr
+        %td=app_layer.app_layer
+        %td=link_to "Show", app_layer_path(app_layer)
+
+=link_to "New App layer", new_app_layer_path

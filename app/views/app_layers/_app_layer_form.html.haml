@@ -1,0 +1,10 @@
+= form_for @app_layer do |f|
+  = render "shared/form_error_messages", object: @app_layer
+  %p
+    =f.label :app_layer
+    =f.text_field :app_layer
+  %p
+    =f.label :active
+    =f.check_box :active
+  %p
+    =f.submit "Submit", class: "intel-btn"

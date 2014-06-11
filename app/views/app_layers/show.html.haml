@@ -1,0 +1,14 @@
+%fieldset
+  %legend showing "#{@app_layer.app_layer}"
+  %ul
+    %li
+      =@app_layer.app_layer
+    %li
+      - if @app_layer.active
+        Active
+      - else
+        Not active
+=link_to "Edit", edit_app_layer_path(@app_layer.id)
+=link_to "Delete", @app_layer, method: :delete,
+                            data: { confirm: "You sure?" },
+                            title: @app_layer.app_layer

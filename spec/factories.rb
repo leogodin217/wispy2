@@ -15,12 +15,17 @@ FactoryGirl.define do
   end
 
   factory :segment do
-    sequence(:segment) { |n| "Market #{n}" }
+    sequence(:segment) { |n| "Segment #{n}" }
     active true
   end
 
   factory :site do
-    sequence(:site) { |n| "Market #{n}" }
+    sequence(:site) { |n| "Site #{n}" }
+    active true
+  end
+
+  factory :app_layer do
+    sequence(:app_layer) { |n| "App layer #{n}" }
     active true
   end
 
