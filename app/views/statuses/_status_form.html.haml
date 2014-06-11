@@ -1,0 +1,10 @@
+= form_for @status do |f|
+  = render "shared/form_error_messages", object: @status
+  %p
+    =f.label :status
+    =f.text_field :status
+  %p
+    =f.label :active
+    =f.check_box :active
+  %p
+    =f.submit "Submit", class: "intel-btn"

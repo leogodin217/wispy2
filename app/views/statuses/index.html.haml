@@ -1,21 +1,8 @@
-%h1 Listing statuses
+%fieldset
+  %table.menu-table
+    - @statuses.each do |status|
+      %tr
+        %td=status.status
+        %td=link_to "Show", status_path(status)
 
-%table
-  %tr
-    %th Status
-    %th Active
-    %th
-    %th
-    %th
-
-  - @statuses.each do |status|
-    %tr
-      %td= status.status
-      %td= status.active
-      %td= link_to 'Show', status
-      %td= link_to 'Edit', edit_status_path(status)
-      %td= link_to 'Destroy', status, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Status', new_status_path
+=link_to "New Status", new_status_path

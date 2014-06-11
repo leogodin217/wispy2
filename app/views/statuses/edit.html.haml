@@ -1,7 +1,4 @@
-%h1 Editing status
+%fieldset.admin-menu-form
+  %legend Change Status
 
-= render 'form'
-
-= link_to 'Show', @status
-\|
-= link_to 'Back', statuses_path
+  = render "status_form"

@@ -34,5 +34,10 @@ FactoryGirl.define do
     active true
   end
 
+  factory :status do
+    sequence(:status) { |n| "Status #{n}" }
+    active true
+  end
+
 end
 
