@@ -1,0 +1,14 @@
+%fieldset
+  %legend showing "#{@segment.segment}"
+  %ul
+    %li
+      =@segment.segment
+    %li
+      - if @segment.active
+        Active
+      - else
+        Not active
+=link_to "Edit", edit_segment_path(@segment.id)
+=link_to "Delete", @segment, method: :delete,
+                            data: { confirm: "You sure?" },
+                            title: @segment.segment

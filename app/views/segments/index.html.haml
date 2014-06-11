@@ -1,0 +1,8 @@
+%fieldset
+  %table.menu-table
+    - @segments.each do |segment|
+      %tr
+        %td=segment.segment
+        %td=link_to "Show", segment_path(segment)
+
+=link_to "New Segment", new_segment_path

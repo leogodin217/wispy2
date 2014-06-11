@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  segment: MyString
+  active: false
+
+two:
+  segment: MyString
+  active: false

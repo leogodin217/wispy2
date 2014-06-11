@@ -1,25 +1,25 @@
-= form_for @front  do |f|
+= form_for(@front, :html => {:role => "form"})  do |f|
   = render 'shared/form_error_messages', object: f.object
-  %p
+  .form-group
     =f.label :market
-    =f.text_field :market
-  %p
+    =f.text_field :market, class: "form-control"
+  .form-group
     =f.label :segment
-    =f.text_field :segment
-  %p
+    =f.text_field :segment, class: "form-control"
+  .form-group
     =f.label :site
-    =f.text_field :site
-  %p
+    =f.text_field :site, class: "form-control"
+  .form-group
     =f.label :app_layer
-    =f.text_field :app_layer
-  %p
+    =f.text_field :app_layer, class: "form-control"
+  .form-group
     =f.label :pipe
-    =f.text_field :pipe
-  %p
+    =f.text_field :pipe, class: "form-control"
+  .form-group
     =f.label :status
-    =f.text_field :status
-  %p
+    =f.text_field :status, class: "form-control"
+  .form-group
     =f.label :notes
-    =f.text_area :notes
-  %p
-    =f.submit "Submit"
+    =f.text_area :notes, class: "form-control"
+  .form-group
+    =f.submit "Submit", class: "intel-btn"

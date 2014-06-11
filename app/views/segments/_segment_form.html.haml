@@ -1,0 +1,10 @@
+= form_for @segment do |f|
+  = render "shared/form_error_messages", object: @segment
+  %p
+    =f.label :segment
+    =f.text_field :segment
+  %p
+    =f.label :active
+    =f.check_box :active
+  %p
+    =f.submit "Submit", class: "intel-btn"
