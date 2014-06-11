@@ -1,0 +1,8 @@
+%fieldset
+  %table.menu-table
+    - @pipes.each do |pipe|
+      %tr
+        %td=pipe.pipe
+        %td=link_to "Show", pipe_path(pipe)
+
+=link_to "New Pipe", new_pipe_path

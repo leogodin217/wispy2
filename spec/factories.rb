@@ -29,5 +29,10 @@ FactoryGirl.define do
     active true
   end
 
+  factory :pipe do
+    sequence(:pipe) { |n| "Pipe #{n}" }
+    active true
+  end
+
 end
 

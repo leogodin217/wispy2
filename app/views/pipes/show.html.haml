@@ -1,0 +1,14 @@
+%fieldset
+  %legend showing "#{@pipe.pipe}"
+  %ul
+    %li
+      =@pipe.pipe
+    %li
+      - if @pipe.active
+        Active
+      - else
+        Not active
+=link_to "Edit", edit_pipe_path(@pipe.id)
+=link_to "Delete", @pipe, method: :delete,
+                            data: { confirm: "You sure?" },
+                            title: @pipe.pipe

@@ -1,0 +1,10 @@
+= form_for @pipe do |f|
+  = render "shared/form_error_messages", object: @pipe
+  %p
+    =f.label :pipe
+    =f.text_field :pipe
+  %p
+    =f.label :active
+    =f.check_box :active
+  %p
+    =f.submit "Submit", class: "intel-btn"
