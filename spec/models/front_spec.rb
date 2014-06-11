@@ -16,7 +16,7 @@ RSpec.describe Front, :type => :model do
   its(:full_name) { should eq front.market +
                               "-" +
                               front.segment +
-                              "-" + 
+                              "-" +
                               front.site +
                               "-" +
                               front.app_layer +
@@ -27,7 +27,7 @@ RSpec.describe Front, :type => :model do
 
     it "should require a market" do
       front.market = ""
-      expect(front).to_not be_valid      
+      expect(front).to_not be_valid
     end
 
     it "should require a segment" do

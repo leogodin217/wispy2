@@ -8,13 +8,13 @@ describe "Front pages" do
 
     before {visit front_path(front.id) }
 
-    it { should have_selector "li", text: front.full_name }
-    it { should have_selector "li", text: front.market }
-    it { should have_selector "li", text: front.segment }
-    it { should have_selector "li", text: front.site }
-    it { should have_selector "li", text: front.app_layer }
-    it { should have_selector "li", text: front.status }
-    it { should have_selector "li", text: front.notes }
+    it { should have_selector "dl>dd", text: front.full_name }
+    it { should have_selector "dl>dd", text: front.market }
+    it { should have_selector "dl>dd", text: front.segment }
+    it { should have_selector "dl>dd", text: front.site }
+    it { should have_selector "dl>dd", text: front.app_layer }
+    it { should have_selector "dl>dd", text: front.status }
+    it { should have_selector "dl>dd", text: front.notes }
     it { should have_link "Edit", href: edit_front_path(front.id) }
     it { should have_selector "a[href='#{front_path(front.id)}'][data-method='delete']" }
   end

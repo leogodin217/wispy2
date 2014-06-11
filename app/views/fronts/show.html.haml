@@ -1,12 +1,20 @@
 .show-front
-  %ul
-    %li=@front.full_name
-    %li=@front.market
-    %li=@front.segment
-    %li=@front.site
-    %li=@front.app_layer
-    %li=@front.status
-    %li=@front.notes
+  %dl.dl-horizontal
+    %dt Full name
+    %dd=@front.full_name
+    %dt Market
+    %dd=@front.market
+    %dt Segment
+    %dd=@front.segment
+    %dt Site
+    %dd=@front.site
+    %dt App layer
+    %dd=@front.app_layer
+    %dt Status
+    %dd=@front.status
+    %dt Notes
+    %dd=@front.notes
+
   =link_to "Edit", edit_front_path(@front)
   =link_to "Delete", @front, method: :delete,
                             data: { confirm: "You sure?" },
