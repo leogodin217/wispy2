@@ -10,7 +10,13 @@ class FrontsController < ApplicationController
 
   def new
     @front = Front.new
+    # Create the menu items
     @markets = Market.all
+    @segments   = Segment.all
+    @sites      = Site.all
+    @app_layers = AppLayer.all
+    @pipes      = Pipe.all
+    @statuses   = Status.all
   end
 
   def create
@@ -21,14 +27,25 @@ class FrontsController < ApplicationController
       redirect_to @front
     else
       # Fill in menus
-      @markets = Market.all
+      @markets    = Market.all
+      @segments   = Segment.all
+      @sites      = Site.all
+      @app_layers = AppLayer.all
+      @pipes      = Pipe.all
+      @statuses   = Status.all
       render :new
     end
   end
 
   def edit
     @front = Front.find(params[:id])
+    # Create the menu items
     @markets = Market.all
+    @segments   = Segment.all
+    @sites      = Site.all
+    @app_layers = AppLayer.all
+    @pipes      = Pipe.all
+    @statuses   = Status.all
   end
 
   def update
@@ -38,8 +55,13 @@ class FrontsController < ApplicationController
       flash[:success] = "Front successfully changed."
       redirect_to @front
     else
-      # Fill in menus
+     # Create the menu items
       @markets = Market.all
+      @segments   = Segment.all
+      @sites      = Site.all
+      @app_layers = AppLayer.all
+      @pipes      = Pipe.all
+      @statuses   = Status.all
       render :edit
     end
   end

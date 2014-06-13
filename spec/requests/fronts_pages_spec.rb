@@ -56,7 +56,6 @@ describe "Front pages" do
     describe "with invalid information" do
     let(:front) {FactoryGirl.build(:front) }
 
-      #before { click_button "Submit" }
       before do
         visit new_front_path
         click_button "Submit"
@@ -92,15 +91,20 @@ describe "Front pages" do
       before do
         # Create the menus
         FactoryGirl.create(:market, market: front.market)
+        FactoryGirl.create(:segment, segment: front.segment)
+        FactoryGirl.create(:site, site: front.site)
+        FactoryGirl.create(:app_layer, app_layer: front.app_layer)
+        FactoryGirl.create(:pipe, pipe: front.pipe)
+        FactoryGirl.create(:status, status: front.status)
         visit new_front_path
 
-        select front.market, from: "Market"
-        fill_in "Segment",   with: front.segment
-        fill_in "Site",      with: front.site
-        fill_in "App layer", with: front.app_layer
-        fill_in "Pipe",      with: front.pipe
-        fill_in "Status",    with: front.status
-        fill_in "Notes",     with: front.notes
+        select front.market,    from: "Market"
+        select front.segment,   from: "Segment"
+        select front.site,      from: "Site"
+        select front.app_layer, from: "App layer"
+        select front.pipe,      from: "Pipe"
+        select front.status,    from: "Status"
+        fill_in "Notes",        with: front.notes
       end
 
       it "should create the Front" do
@@ -143,21 +147,31 @@ describe "Front pages" do
     let!(:changed_front) { FactoryGirl.build(:front) }
 
     before do
-      # Create menus
-      FactoryGirl.create(:market, market: valid_front.market)
-      FactoryGirl.create(:market, market: changed_front.market)
+      # Create menus for both fronts
+      FactoryGirl.create(:market,    market:    changed_front.market)
+      FactoryGirl.create(:segment,   segment:   changed_front.segment)
+      FactoryGirl.create(:site,      site:      changed_front.site)
+      FactoryGirl.create(:app_layer, app_layer: changed_front.app_layer)
+      FactoryGirl.create(:pipe,      pipe:      changed_front.pipe)
+      FactoryGirl.create(:status,    status:    changed_front.status)
+      FactoryGirl.create(:market,    market:    valid_front.market)
+      FactoryGirl.create(:segment,   segment:   valid_front.segment)
+      FactoryGirl.create(:site,      site:      valid_front.site)
+      FactoryGirl.create(:app_layer, app_layer: valid_front.app_layer)
+      FactoryGirl.create(:pipe,      pipe:      valid_front.pipe)
+      FactoryGirl.create(:status,    status:    valid_front.status)
       visit edit_front_path valid_front.id
     end
 
     describe "with valid information" do
       before do
-        select changed_front.market, from: "Market"
-        fill_in "Segment",   with: changed_front.segment
-        fill_in "Site",      with: changed_front.site
-        fill_in "App layer", with: changed_front.app_layer
-        fill_in "Pipe",      with: changed_front.pipe
-        fill_in "Status",    with: changed_front.status
-        fill_in "Notes",     with: changed_front.notes
+        select changed_front.market,    from: "Market"
+        select changed_front.segment,   from: "Segment"
+        select changed_front.site,      from: "Site"
+        select changed_front.app_layer, from: "App layer"
+        select changed_front.pipe,      from: "Pipe"
+        select changed_front.status,    from: "Status"
+        fill_in "Notes", with: changed_front.notes
       end
 
       it "should save the new information" do

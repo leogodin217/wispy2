@@ -2,22 +2,34 @@
   = render 'shared/form_error_messages', object: f.object
   .form-group
     =f.label :market
-    =f.select :market, options_from_collection_for_select(@markets, :market, :market)
+    - options_list = options_from_collection_for_select(@markets,
+                                                        :market, :market)
+    =f.select(:market, options_list, {}, {:class => "form-control"})
   .form-group
     =f.label :segment
-    =f.text_field :segment, class: "form-control"
+    - options_list = options_from_collection_for_select(@segments,
+                                                        :segment, :segment)
+    =f.select :segment, options_list, {}, {class: "form-control"}
   .form-group
     =f.label :site
-    =f.text_field :site, class: "form-control"
+    - options_list = options_from_collection_for_select(@sites,
+                                                        :site, :site)
+    =f.select :site, options_list, {}, {class: "form-control"}
   .form-group
     =f.label :app_layer
-    =f.text_field :app_layer, class: "form-control"
+    - options_list = options_from_collection_for_select(@app_layers,
+                                                        :app_layer, :app_layer)
+    =f.select :app_layer, options_list, {}, {class: "form-control"}
   .form-group
     =f.label :pipe
-    =f.text_field :pipe, class: "form-control"
+    - options_list = options_from_collection_for_select(@pipes,
+                                                        :pipe, :pipe)
+    =f.select :pipe, options_list, {}, {class: "form-control"}
   .form-group
     =f.label :status
-    =f.text_field :status, class: "form-control"
+    - options_list = options_from_collection_for_select(@statuses,
+                                                        :status, :status)
+    =f.select :status, options_list, {}, {class: "form-control"}
   .form-group
     =f.label :notes
     =f.text_area :notes, class: "form-control"
