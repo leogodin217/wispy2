@@ -47,7 +47,6 @@ describe "Front pages" do
   end
 
   describe "creating a front" do
-    let(:front) {FactoryGirl.build(:front) }
 
     before do
       visit fronts_path
@@ -55,8 +54,13 @@ describe "Front pages" do
     end
 
     describe "with invalid information" do
+    let(:front) {FactoryGirl.build(:front) }
 
-      before { click_button "Submit" }
+      #before { click_button "Submit" }
+      before do
+        visit new_front_path
+        click_button "Submit"
+      end
 
       it "should re-display the form" do
         expect(page).to have_selector "form#new_front"
@@ -83,9 +87,14 @@ describe "Front pages" do
 
 
     describe "with valid information" do
+      let(:front) { FactoryGirl.build(:front) }
 
       before do
-        fill_in "Market",    with: front.market
+        # Create the menus
+        FactoryGirl.create(:market, market: front.market)
+        visit new_front_path
+
+        select front.market, from: "Market"
         fill_in "Segment",   with: front.segment
         fill_in "Site",      with: front.site
         fill_in "App layer", with: front.app_layer
@@ -95,7 +104,6 @@ describe "Front pages" do
       end
 
       it "should create the Front" do
-
         expect{click_button("Submit")}.to change{Front.count}.by(1)
       end
 
@@ -134,55 +142,40 @@ describe "Front pages" do
     let!(:valid_front)   { FactoryGirl.create(:front) }
     let!(:changed_front) { FactoryGirl.build(:front) }
 
-    before { visit edit_front_path valid_front.id }
+    before do
+      # Create menus
+      FactoryGirl.create(:market, market: valid_front.market)
+      FactoryGirl.create(:market, market: changed_front.market)
+      visit edit_front_path valid_front.id
+    end
 
-      it "should require required fields" do
-        @front = Front.new
-        @front.save
-        @error_messages = @front.errors.full_messages
-        expect(@error_messages.count).to be > 0
+    describe "with valid information" do
+      before do
+        select changed_front.market, from: "Market"
+        fill_in "Segment",   with: changed_front.segment
+        fill_in "Site",      with: changed_front.site
+        fill_in "App layer", with: changed_front.app_layer
+        fill_in "Pipe",      with: changed_front.pipe
+        fill_in "Status",    with: changed_front.status
+        fill_in "Notes",     with: changed_front.notes
+      end
 
-        fill_in "Market",    with: ""
-        fill_in "Segment",   with: ""
-        fill_in "Site",      with: ""
-        fill_in "App layer", with: ""
-        fill_in "Pipe",      with: ""
-        fill_in "Status",    with: ""
-        fill_in "Notes",     with: ""
+      it "should save the new information" do
         click_button("Submit")
-
-        @error_messages.each do |message|
-          expect(page).to have_content(message)
-        end
+        valid_front.reload
+        expect(valid_front.market).to eq changed_front.market
+        expect(valid_front.segment).to eq changed_front.segment
+        expect(valid_front.site).to eq changed_front.site
+        expect(valid_front.app_layer).to eq changed_front.app_layer
+        expect(valid_front.pipe).to eq changed_front.pipe
+        expect(valid_front.status).to eq changed_front.status
+        expect(valid_front.notes).to eq changed_front.notes
       end
 
-      describe "with valid information" do
-        before do
-          fill_in "Market",    with: changed_front.market
-          fill_in "Segment",   with: changed_front.segment
-          fill_in "Site",      with: changed_front.site
-          fill_in "App layer", with: changed_front.app_layer
-          fill_in "Pipe",      with: changed_front.pipe
-          fill_in "Status",    with: changed_front.status
-          fill_in "Notes",     with: changed_front.notes
-        end
-
-        it "should save the new information" do
-          click_button("Submit")
-          valid_front.reload
-          expect(valid_front.market).to eq changed_front.market
-          expect(valid_front.segment).to eq changed_front.segment
-          expect(valid_front.site).to eq changed_front.site
-          expect(valid_front.app_layer).to eq changed_front.app_layer
-          expect(valid_front.pipe).to eq changed_front.pipe
-          expect(valid_front.status).to eq changed_front.status
-          expect(valid_front.notes).to eq changed_front.notes
-        end
-
-        it "should flass a success message" do
-          click_button("Submit")
-          expect(page).to have_content("Front successfully changed")
-        end
+      it "should flass a success message" do
+        click_button("Submit")
+        expect(page).to have_content("Front successfully changed")
       end
+    end
   end
 end

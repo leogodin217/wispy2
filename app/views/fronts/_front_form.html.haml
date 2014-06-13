@@ -2,7 +2,7 @@
   = render 'shared/form_error_messages', object: f.object
   .form-group
     =f.label :market
-    =f.text_field :market, class: "form-control"
+    =f.select :market, options_from_collection_for_select(@markets, :market, :market)
   .form-group
     =f.label :segment
     =f.text_field :segment, class: "form-control"

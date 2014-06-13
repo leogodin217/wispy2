@@ -10,6 +10,7 @@ class FrontsController < ApplicationController
 
   def new
     @front = Front.new
+    @markets = Market.all
   end
 
   def create
@@ -19,12 +20,15 @@ class FrontsController < ApplicationController
       flash[:success] = "Front successfully created."
       redirect_to @front
     else
+      # Fill in menus
+      @markets = Market.all
       render :new
     end
   end
 
   def edit
     @front = Front.find(params[:id])
+    @markets = Market.all
   end
 
   def update
@@ -34,6 +38,8 @@ class FrontsController < ApplicationController
       flash[:success] = "Front successfully changed."
       redirect_to @front
     else
+      # Fill in menus
+      @markets = Market.all
       render :edit
     end
   end
