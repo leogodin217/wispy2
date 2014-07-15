@@ -1,5 +1,7 @@
 class Front < ActiveRecord::Base
 
+  has_many :clusters
+
   validates :market,    presence: true
   validates :segment,   presence: true
   validates :site,      presence: true
@@ -11,7 +13,7 @@ class Front < ActiveRecord::Base
     market +
     "-" +
     segment +
-    "-" + 
+    "-" +
     site +
     "-" +
     app_layer +

@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611195155) do
+ActiveRecord::Schema.define(version: 20140613223727) do
 
   create_table "app_layers", force: true do |t|
     t.string   "app_layer"
     t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clusters", force: true do |t|
+    t.string   "name"
+    t.integer  "front_id"
+    t.string   "status"
+    t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

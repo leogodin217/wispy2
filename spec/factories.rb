@@ -9,6 +9,13 @@ FactoryGirl.define do
     sequence(:notes)       { |n| "Notes #{n}" }
   end
 
+  factory :cluster do
+    sequence(:name)   {|n| "Cluster #{n}" }
+    sequence(:status) {|n| "Status #{n}"}
+    sequence(:notes)  {|n| "Notes #{n}"}
+    front
+  end
+
   factory :market do
     sequence(:market) { |n| "Market #{n}" }
     active true

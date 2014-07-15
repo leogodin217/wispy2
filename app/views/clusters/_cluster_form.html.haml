@@ -1,0 +1,21 @@
+= form_for(@cluster, :html => {:role => "form"})  do |f|
+  = render 'shared/form_error_messages', object: f.object
+
+  .form-group
+    =f.label :name
+    =f.text_field  :name, class: "form-control"
+  .form-group
+    =f.label :front_id
+    - options_list = options_from_collection_for_select(@fronts,
+                                                        :id, :full_name)
+    =f.select :front_id, options_list, {}, {class: "form-control"}
+  .form-group
+    =f.label :status
+    - options_list = options_from_collection_for_select(@statuses,
+                                                        :status, :status)
+    =f.select :status, options_list, {}, {class: "form-control"}
+  .form-group
+    =f.label :notes
+    =f.text_area :notes, class: "form-control"
+  .form-group
+    =f.submit "Submit", class: "intel-btn"

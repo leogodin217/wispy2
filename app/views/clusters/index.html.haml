@@ -1,0 +1,9 @@
+
+%fieldset
+  %table.clusters_table
+    - @clusters.each do |cluster|
+      %tr
+        %td=cluster.name
+        %td=link_to "Show", cluster_path(cluster)
+
+=link_to "New Cluster", new_cluster_path

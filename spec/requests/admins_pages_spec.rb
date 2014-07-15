@@ -5,6 +5,7 @@ describe "admin index" do
   before { visit admin_path }
 
   it { should have_link "Fronts",     fronts_path }
+  it { should have_link "Clusters",   clusters_path }
   it { should have_link "Markets",    markets_path }
   it { should have_link "Segments",   segments_path }
   it { should have_link "Sites",      sites_path }

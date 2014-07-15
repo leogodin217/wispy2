@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Front, :type => :model do
-  let(:front) { FactoryGirl.create :front }
+  let!(:front) { FactoryGirl.create :front }
 
   subject { front }
 
@@ -13,6 +13,7 @@ RSpec.describe Front, :type => :model do
   it { should respond_to :status }
   it { should respond_to :notes }
   it { should respond_to :full_name }
+  it { should respond_to :clusters }
   its(:full_name) { should eq front.market +
                               "-" +
                               front.segment +
@@ -22,8 +23,15 @@ RSpec.describe Front, :type => :model do
                               front.app_layer +
                               "-" +
                               front.pipe }
-
   describe "validation" do
+    it "should have many clusters" do
+      front.clusters.create(name: "cluster1")
+      front.clusters.create(name: "cluster2")
+      expect(front.clusters.to_a.length).to eq 2
+    end
+  end
+
+  describe "required fields" do
 
     it "should require a market" do
       front.market = ""

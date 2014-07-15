@@ -1,0 +1,15 @@
+.show-cluster
+  %dl.dl-horizontal
+    %dt Name
+    %dd=@cluster.name
+    %dt Front
+    %dd=@cluster.front.full_name
+    %dt Status
+    %dd=@cluster.status
+    %dt Notes
+    %dd=@cluster.notes
+
+  =link_to "Edit", edit_cluster_path(@cluster)
+  =link_to "Delete", @cluster, method: :delete,
+                            data: { confirm: "You sure?" },
+                            title: @cluster.name

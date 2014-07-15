@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # Used for select lists
   resources :statuses
   resources :markets
   resources :segments
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
 
   root 'home_pages#home'
   resources :fronts
+  resources :clusters
 
   match '/admin', to: "admins#index", via: :get
   # Temporary signin_path before authentication is setup
