@@ -7,5 +7,6 @@ describe "Home page" do
 
     it { should have_title("Wispy Cloud Capacity") }
     it { should have_link "Sign in", signin_path }
+    it { should have_link "Admin", admin_path }
     it { should have_link "Home", root_path }
 end
